@@ -1,4 +1,4 @@
-package com.example.Connect
+package com.example.connect
 
 import android.content.Intent
 import android.os.Bundle

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introScreenFragment"
-        android:name="com.example.Connect.IntroScreenFragment"
+        android:name="com.example.connect.IntroScreenFragment"
         android:label="fragment_intro_screen"
         tools:layout="@layout/fragment_intro_screen" />
 </navigation>
