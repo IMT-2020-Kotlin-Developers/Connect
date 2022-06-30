@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/introScreenFragment">
+
+    <fragment
+        android:id="@+id/introScreenFragment"
+        android:name="com.example.myapplication.IntroScreenFragment"
+        android:label="fragment_intro_screen"
+        tools:layout="@layout/fragment_intro_screen" />
+</navigation>
