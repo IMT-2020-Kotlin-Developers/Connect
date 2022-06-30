@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project/Connect/app/src/main/res/drawable/ic_logo.xml" value="0.2703125" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/drawable/splash.xml" value="0.2703125" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/splash.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
       </map>
     </option>
