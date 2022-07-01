@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.Connect"
+        applicationId "com.example.connect"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -45,5 +48,9 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
+
+    // Material design
+    implementation 'com.google.android.material:material:1.0.0'
+
 
 }

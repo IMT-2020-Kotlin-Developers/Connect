@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Connect</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="let_s_get_started">Let\'s get started</string>
+    <string name="connect_with_each_other">Connect with each other</string>
+    <string name="enjoy_safe_and_private_texting">Enjoy safe and private texting</string>
+    <string name="sign_in">Sign In</string>
+    <string name="log_in">Log In</string>
+    <string name="intro_vector">Intro Vector</string>
+    <string name="you_can_connect_with">You can connect with</string>
+    <string name="log_in_with_google">Log in with google</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in_vector">Log in vector</string>
+    <string name="sign_in_vector">Sign in vector</string>
+    <string name="full_name">Full name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_in_with_google">Sign in with google</string>
 </resources>
