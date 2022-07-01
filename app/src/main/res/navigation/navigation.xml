@@ -9,5 +9,22 @@
         android:id="@+id/introScreenFragment"
         android:name="com.example.connect.IntroScreenFragment"
         android:label="fragment_intro_screen"
-        tools:layout="@layout/fragment_intro_screen" />
+        tools:layout="@layout/fragment_intro_screen" >
+        <action
+            android:id="@+id/action_introScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_introScreenFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.connect.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.connect.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" />
 </navigation>

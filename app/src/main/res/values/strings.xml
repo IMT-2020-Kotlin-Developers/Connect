@@ -7,4 +7,13 @@
     <string name="sign_in">Sign In</string>
     <string name="log_in">Log In</string>
     <string name="intro_vector">Intro Vector</string>
+    <string name="you_can_connect_with">You can connect with</string>
+    <string name="log_in_with_google">Log in with google</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in_vector">Log in vector</string>
+    <string name="sign_in_vector">Sign in vector</string>
+    <string name="full_name">Full name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_in_with_google">Sign in with google</string>
 </resources>
