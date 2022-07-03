@@ -1,4 +1,4 @@
-package com.example.connect
+package com.example.connect.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,14 +10,14 @@ import com.example.connect.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
-    lateinit var binding : FragmentProfileBinding
+lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
+        binding = FragmentProfileBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
 
 
-}
+    }
