@@ -88,18 +88,20 @@
             android:layout_marginTop="8dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_login_google"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:icon="@drawable/ic_google_vector"
-            app:backgroundTint="@color/dark_green"
-            app:layout_constraintTop_toBottomOf="@id/tvLogInGoogle"
-            android:text="@string/log_in_with_google"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            app:iconGravity="textStart"/>
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/log_in_with_google"
+            app:backgroundTint="@color/dark_green"
+            app:icon="@drawable/ic_google_vector"
+            app:iconGravity="textStart"
+            app:layout_constraintTop_toBottomOf="@id/tvLogInGoogle"
+            tools:layout_editor_absoluteX="32dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

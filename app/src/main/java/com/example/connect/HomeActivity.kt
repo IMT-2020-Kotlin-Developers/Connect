@@ -1,6 +1,7 @@
 package com.example.connect
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.connect.Fragments.FeedFragment
@@ -24,7 +25,10 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.bnHome -> setCurrentFragment(feedFragment)
-                R.id.bnProfile -> setCurrentFragment(profileFragment)
+                R.id.bnProfile -> {
+                    Log.d("Profile","Clicked")
+                    setCurrentFragment(profileFragment)
+                }
             }
             true
         }

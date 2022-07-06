@@ -49,7 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ProfilePic"
             app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/ic_person">
+            app:startIconDrawable="@drawable/ic_user_vector">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/TextInputEtName"
@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName"
             app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/ic_baseline_note_24">
+            app:startIconDrawable="@drawable/ic_description_vector">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/TextInputEtBio"

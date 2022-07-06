@@ -33,9 +33,6 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
                  try {
                       for(Doc in personQuery){
                            db.document(Doc.id).set(user, SetOptions.merge()).await()
-                          withContext(Dispatchers.Main){
-                              Toast.makeText(getApplication(),"Success", Toast.LENGTH_LONG).show()
-                          }
                       }
 
                  }catch (e : Exception){

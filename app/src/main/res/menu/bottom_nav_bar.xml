@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
  <item android:id="@+id/bnHome"
        android:title="Home"
-     android:icon="@drawable/ic_home"/>
+     android:icon="@drawable/ic_home_vector"/>
     <item android:id="@+id/bnChat"
         android:title="Chat"
         android:icon="@drawable/ic_comment"/>
@@ -10,9 +10,9 @@
         android:title=""/>
     <item android:id="@+id/bnNotification"
     android:title="Notification"
-    android:icon="@drawable/ic_notifications_24"/>
+    android:icon="@drawable/ic_notification_vector"/>
     <item android:id="@+id/bnProfile"
     android:title="Profile"
-    android:icon="@drawable/ic_person"/>
+    android:icon="@drawable/ic_profile_vector"/>
 
 </menu>

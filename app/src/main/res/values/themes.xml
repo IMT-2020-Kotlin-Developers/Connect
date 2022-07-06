@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="progressBar">
-        <item name="colorSecondary">#000000</item>
+        <item name="colorSecondary">@color/dark_green</item>
     </style>
     <style name="navBar">
         <item name="colorSecondary">@color/dark_green</item>
