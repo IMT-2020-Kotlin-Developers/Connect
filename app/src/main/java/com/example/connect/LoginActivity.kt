@@ -27,6 +27,7 @@ class LoginActivity :AppCompatActivity() {
 
         binding.btLogIn.setOnClickListener {
            logInUser(binding.TextInputEtEmail.text.toString(),binding.TextInputPassword.text.toString())
+
         }
     }
 

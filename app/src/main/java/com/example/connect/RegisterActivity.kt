@@ -26,6 +26,7 @@ class RegisterActivity : AppCompatActivity(){
 
         binding.btSignIn.setOnClickListener {
           registerUser()
+
         }
     }
     private fun registerUser() = CoroutineScope(Dispatchers.IO).launch{

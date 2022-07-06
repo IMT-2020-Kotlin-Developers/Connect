@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.connect.Fragments.FeedFragment
 import com.example.connect.Fragments.ProfileFragment
 import com.example.connect.databinding.ActivityHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding : ActivityHomeBinding
