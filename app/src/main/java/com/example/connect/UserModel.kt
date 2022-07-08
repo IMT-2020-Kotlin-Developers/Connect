@@ -1,6 +1,6 @@
 package com.example.connect
 
-data class UserModal (
+data class UserModel (
 
     var uid : String? = null,
     var fullName : String? = null,

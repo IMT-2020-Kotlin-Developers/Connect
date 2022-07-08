@@ -16,12 +16,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout">
 <!--    <fragment-->
-<!--        android:id="@+id/NavHostFragment"-->
-<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:id="@+id/myNavHostFragment"-->
+
 <!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
+<!--        android:layout_height="0dp"/>-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
 <!--        app:navGraph="@navigation/navigation"-->
-<!--        app:defaultNavHost="true"/>-->
+<!--        app:defaultNavHost="true"-->
     </FrameLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -31,8 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:context=".Fragments.FeedFragment"
-        app:layout_constraintHeight="wrap_content">
+        tools:context=".Fragments.FeedFragment">
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomNavBar"
