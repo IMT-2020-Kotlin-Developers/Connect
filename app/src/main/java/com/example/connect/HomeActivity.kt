@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.connect.Fragments.FeedFragment
 import com.example.connect.Fragments.ProfileFragment
+import com.example.connect.ViewModel.HomeActivityViewModel
 import com.example.connect.databinding.ActivityHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var binding : ActivityHomeBinding
+    lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -18,16 +21,19 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
         binding.bottomNavView.background = null
         binding.bottomNavView.menu.getItem(2).isEnabled = false
-        val feedFragment = FeedFragment()
-        val profileFragment = ProfileFragment()
 
-        setCurrentFragment(feedFragment)
+        val viewModel: HomeActivityViewModel = ViewModelProvider(this).get(HomeActivityViewModel::class.java)
+        viewModel.fragment().observe(this, Observer {
+            setCurrentFragment(it)
+        })
+
+//        setCurrentFragment(feedFragment)
         binding.bottomNavView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.bnHome -> setCurrentFragment(feedFragment)
+            when (it.itemId) {
+                R.id.bnHome -> viewModel.setCurrFragment(FeedFragment())
                 R.id.bnProfile -> {
-                    Log.d("Profile","Clicked")
-                    setCurrentFragment(profileFragment)
+                    Log.d("Profile", "Clicked")
+                    viewModel.setCurrFragment(ProfileFragment())
                 }
             }
             true
@@ -35,10 +41,11 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
+
     private fun setCurrentFragment(fragment: Fragment) {
-    supportFragmentManager.beginTransaction().apply {
-        replace(R.id.Fragment_Base,fragment)
-        commit()
-    }
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.Fragment_Base, fragment)
+            commit()
+        }
     }
 }

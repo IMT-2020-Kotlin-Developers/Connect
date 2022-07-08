@@ -38,16 +38,6 @@ class MainActivity : AppCompatActivity() {
         binding.btSignIn.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-        if(auth.currentUser != null){
-            binding.progressBar2.visibility = View.VISIBLE
-            binding.btSignIn.visibility = View.GONE
-            binding.btLogIn.visibility = View.GONE
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                startActivity(Intent(this , HomeActivity::class.java))
-            finish()
-            }, 1000)
-
-        }
     }
 
 

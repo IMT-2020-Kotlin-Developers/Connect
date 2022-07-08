@@ -16,6 +16,9 @@
     <style name="progressBar">
         <item name="colorSecondary">@color/dark_green</item>
     </style>
+    <style name="blackProgressBar">
+        <item name="colorSecondary">@color/black</item>
+    </style>
     <style name="navBar">
         <item name="colorSecondary">@color/dark_green</item>
     </style>
