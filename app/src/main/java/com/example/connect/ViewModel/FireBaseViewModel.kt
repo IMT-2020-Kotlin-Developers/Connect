@@ -1,14 +1,21 @@
 package com.example.connect.ViewModel
 
 import android.app.Application
+import android.content.Intent
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.provider.Contacts
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.example.connect.MainActivity
 import com.example.connect.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -22,7 +29,7 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var db = Firebase.firestore.collection("User")
     var storageReference = Firebase.storage.reference
-    private var currentUser = MutableLiveData<UserModel>()
+    private var currentUser = MutableLiveData<UserModel>(UserModel("","","",""))
     var URL = ""
     fun user(): LiveData<UserModel> {
         return currentUser
@@ -66,14 +73,14 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getCurrentUser() {
-
         CoroutineScope(Dispatchers.IO).launch {
+            var user = UserModel()
             val personQuery = db
                 .whereEqualTo("uid", auth.currentUser?.uid)
                 .get()
                 .await()
             for (doc in personQuery) {
-                val user = UserModel(
+                user = UserModel(
                     doc.get("uid").toString(),
                     doc.get("fullName").toString(),
                     doc.get("bio").toString(),
@@ -86,7 +93,7 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun uploadProfilePic(uri: Uri) {
-        var Uid = auth.currentUser?.uid
+        val Uid = auth.currentUser?.uid
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 storageReference.child("$Uid/profilePic").putFile(uri).await()

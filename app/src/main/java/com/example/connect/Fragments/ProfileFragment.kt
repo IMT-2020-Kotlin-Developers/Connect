@@ -22,6 +22,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ProfileFragment : Fragment() {
@@ -36,23 +39,23 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
 
         viewModel = ViewModelProvider(activity!!)[FireBaseViewModel::class.java]
         auth = FirebaseAuth.getInstance()
         viewModel.getCurrentUser()
-        viewModel.user().observe(activity!!, Observer {
-            binding.TextInputEtBio.setText(it.bio)
-            binding.TextInputEtName.setText(it.fullName)
+        viewModel.user().observe(viewLifecycleOwner, Observer {
+            binding.TextInputEtBio.setText(it.bio.toString())
+            binding.TextInputEtName.setText(it.fullName.toString())
             Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
             Log.d("@@getobserve", "${it.photoURL}")
+            Log.d("@@getobserve", "${it.fullName}")
         })
         binding.btLogOut.setOnClickListener {
             auth.signOut()
             startActivity(Intent(context, MainActivity::class.java))
         }
-
 
         binding.ProfilePic.setOnClickListener {
             val builder = AlertDialog.Builder(context!!)
@@ -73,9 +76,9 @@ class ProfileFragment : Fragment() {
             var User = UserModel(auth.uid, "", "", "")
             User.fullName = binding.TextInputEtName.text.toString()
             User.bio = binding.TextInputEtBio.text.toString()
+            User.photoURL = auth.currentUser?.photoUrl.toString()
             viewModel.saveUser(User)
         }
-
 
         return binding.root
     }
@@ -85,10 +88,10 @@ class ProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
             imageUri = data?.data!!
+            viewModel.uploadProfilePic(imageUri)
+            binding.ProfilePic.setImageURI(imageUri)
         }
-        viewModel.uploadProfilePic(imageUri)
-        binding.ProfilePic.setImageURI(null)
-        binding.ProfilePic.setImageURI(imageUri)
+//        binding.ProfilePic.setImageURI(null)
     }
 
 
