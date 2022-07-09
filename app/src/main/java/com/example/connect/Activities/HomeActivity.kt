@@ -1,4 +1,4 @@
-package com.example.connect
+package com.example.connect.Activities
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.connect.Fragments.FeedFragment
 import com.example.connect.Fragments.ProfileFragment
+import com.example.connect.R
 import com.example.connect.ViewModel.HomeActivityViewModel
 import com.example.connect.databinding.ActivityHomeBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding

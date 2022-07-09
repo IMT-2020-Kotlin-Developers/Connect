@@ -1,4 +1,4 @@
-package com.example.connect
+package com.example.connect.Model
 
 data class UserModel (
 

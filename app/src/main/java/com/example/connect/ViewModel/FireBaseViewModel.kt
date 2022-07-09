@@ -1,21 +1,14 @@
 package com.example.connect.ViewModel
 
 import android.app.Application
-import android.content.Intent
 import android.net.Uri
-import android.os.Handler
-import android.os.Looper
-import android.provider.Contacts
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import com.example.connect.MainActivity
-import com.example.connect.UserModel
+import com.example.connect.Model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage

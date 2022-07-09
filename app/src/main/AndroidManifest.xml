@@ -9,22 +9,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name="com.example.connect.MainActivity"
+            android:name="com.example.connect.Activities.MainActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name="com.example.connect.LoginActivity"
+            android:name="com.example.connect.Activities.LoginActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name="com.example.connect.RegisterActivity"
+            android:name="com.example.connect.Activities.RegisterActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name="com.example.connect.HomeActivity"
+            android:name="com.example.connect.Activities.HomeActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name="com.example.connect.Activities.UserDetailActivity"
             android:exported="true">
 
         </activity>

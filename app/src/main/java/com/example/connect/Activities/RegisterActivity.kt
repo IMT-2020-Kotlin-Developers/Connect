@@ -1,12 +1,11 @@
-package com.example.connect
+package com.example.connect.Activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.connect.R
 import com.example.connect.databinding.RegisterActivityBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -33,7 +32,6 @@ class RegisterActivity : AppCompatActivity(){
 
         binding.btSignIn.setOnClickListener {
           registerUser()
-
         }
     }
 
@@ -55,7 +53,7 @@ class RegisterActivity : AppCompatActivity(){
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 auth.signInWithCredential(credentials).await()
-                startActivity(Intent(this@RegisterActivity,HomeActivity::class.java))
+                startActivity(Intent(this@RegisterActivity, HomeActivity::class.java))
                 finishAffinity()
             }catch (e: java.lang.Exception){
                 withContext(Dispatchers.Main){
@@ -84,7 +82,7 @@ class RegisterActivity : AppCompatActivity(){
                 try {
                     auth.createUserWithEmailAndPassword(email, password).await()
                     withContext(Dispatchers.Main){
-                        startActivity(Intent(this@RegisterActivity,HomeActivity::class.java))
+                        startActivity(Intent(this@RegisterActivity, UserDetailActivity::class.java))
                         finishAffinity()
                     }
                 }catch (e : Exception){
