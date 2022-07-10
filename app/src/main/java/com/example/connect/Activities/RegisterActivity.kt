@@ -33,6 +33,18 @@ class RegisterActivity : AppCompatActivity(){
         binding.btSignIn.setOnClickListener {
           registerUser()
         }
+
+        binding.btSinginGoogle.setOnClickListener{
+            val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.webclient_id))
+                .requestEmail()
+                .build()
+
+            val signInClient = GoogleSignIn.getClient(this, options)
+            signInClient.signInIntent.also {
+                startActivityForResult(it, REQUEST_CODE_SIGN_IN)
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

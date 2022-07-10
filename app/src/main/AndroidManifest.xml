@@ -9,32 +9,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name="com.example.connect.Activities.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name="com.example.connect.Activities.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".Activities.AddPostActivity"
+            android:exported="true" />
         <activity
-            android:name="com.example.connect.Activities.RegisterActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".Activities.MainActivity"
+            android:exported="true"></activity>
         <activity
-            android:name="com.example.connect.Activities.HomeActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".Activities.LoginActivity"
+            android:exported="true"></activity>
         <activity
-            android:name="com.example.connect.Activities.UserDetailActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".Activities.RegisterActivity"
+            android:exported="true"></activity>
         <activity
-            android:name="com.example.connect.Splash"
+            android:name=".Activities.HomeActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Activities.UserDetailActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,9 +9,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FEED"
-            android:textSize="32dp"
+            android:textSize="32sp"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:gravity="center_horizontal" />
 
 
 
