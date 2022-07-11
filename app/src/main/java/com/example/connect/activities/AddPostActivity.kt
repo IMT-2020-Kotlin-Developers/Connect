@@ -1,20 +1,17 @@
-package com.example.connect.Activities
+package com.example.connect.activities
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.connect.Model.PostModel
-import com.example.connect.R
+import com.example.connect.model.PostModel
 import com.example.connect.databinding.ActivityAddPostBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -24,7 +21,6 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
 class AddPostActivity : AppCompatActivity() {

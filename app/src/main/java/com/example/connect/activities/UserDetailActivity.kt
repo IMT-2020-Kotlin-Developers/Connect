@@ -1,4 +1,4 @@
-package com.example.connect.Activities
+package com.example.connect.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -8,8 +8,8 @@ import android.provider.MediaStore
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.connect.Model.UserModel
-import com.example.connect.ViewModel.FireBaseViewModel
+import com.example.connect.model.UserModel
+import com.example.connect.viewModel.FireBaseViewModel
 import com.example.connect.databinding.ActivityUserDetailBinding
 import com.google.firebase.auth.FirebaseAuth
 

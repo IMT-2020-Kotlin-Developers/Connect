@@ -1,4 +1,4 @@
-package com.example.connect.Model
+package com.example.connect.model
 
 data class PostModel (
     var uid:String? = null,

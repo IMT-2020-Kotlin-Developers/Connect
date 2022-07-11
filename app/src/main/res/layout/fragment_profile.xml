@@ -2,11 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Fragments.ProfileFragment">
+        tools:context=".fragments.ProfileFragment">
 
         <TextView
             android:id="@+id/profile1"
@@ -133,6 +132,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_Followers"/>
         <TextView
+            android:id="@+id/tv_Posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14dp"
@@ -149,11 +149,13 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginBottom="18dp"
             android:id="@+id/post_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Profile4" />
+            app:layout_constraintTop_toBottomOf="@+id/Profile4"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="-147dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

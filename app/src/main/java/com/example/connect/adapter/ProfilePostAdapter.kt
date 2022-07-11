@@ -1,18 +1,14 @@
-package com.example.connect.Adapter
+package com.example.connect.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.connect.Model.PostModel
+import com.example.connect.model.PostModel
 import com.example.connect.R
-import com.google.firebase.firestore.auth.User
 
 class ProfilePostAdapter(private var posts: ArrayList<PostModel>): RecyclerView.Adapter<ProfilePostAdapter.ViewHolder>(){
     override fun onCreateViewHolder(

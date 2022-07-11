@@ -1,4 +1,4 @@
-package com.example.connect.ViewModel
+package com.example.connect.viewModel
 
 import android.app.Application
 import android.net.Uri
@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.connect.Model.UserModel
+import com.example.connect.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
@@ -25,6 +25,9 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     var storageReference = Firebase.storage.reference
     private var currentUser = MutableLiveData<UserModel>(UserModel("","","",""))
     var URL = ""
+    init {
+        getCurrentUser()
+    }
     fun user(): LiveData<UserModel> {
         return currentUser
     }
@@ -84,23 +87,6 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
             }
             currentUser.postValue(user)
         }
-//        CoroutineScope(Dispatchers.IO).launch {
-//            var user = UserModel()
-//            val personQuery = db
-//                .whereEqualTo("uid", auth.currentUser?.uid)
-//                .get()
-//                .await()
-//            for (doc in personQuery) {
-//                user = UserModel(
-//                    doc.get("uid").toString(),
-//                    doc.get("fullName").toString(),
-//                    doc.get("bio").toString(),
-//                    doc.get("photoURL").toString()
-//                )
-//                currentUser = MutableLiveData(user)
-//                Log.d("@@GetCurrentUser", "${currentUser.value}")
-//            }
-//        }
     }
 
     fun uploadProfilePic(uri: Uri) {

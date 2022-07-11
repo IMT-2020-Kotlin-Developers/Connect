@@ -1,17 +1,16 @@
-package com.example.connect.Activities
+package com.example.connect.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.connect.Fragments.FeedFragment
-import com.example.connect.Fragments.ProfileFragment
+import com.example.connect.fragments.FeedFragment
+import com.example.connect.fragments.ProfileFragment
 import com.example.connect.R
-import com.example.connect.ViewModel.HomeActivityViewModel
+import com.example.connect.viewModel.HomeActivityViewModel
 import com.example.connect.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -21,6 +20,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         binding.bottomNavView.background = null
         binding.bottomNavView.menu.getItem(2).isEnabled = false
 

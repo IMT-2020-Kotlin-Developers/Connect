@@ -1,4 +1,4 @@
-package com.example.connect.Activities
+package com.example.connect.activities
 
 import android.content.Intent
 import android.os.Bundle

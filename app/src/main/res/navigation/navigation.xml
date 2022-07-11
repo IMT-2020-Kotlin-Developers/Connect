@@ -6,12 +6,12 @@
     app:startDestination="@id/feedFragment">
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.connect.Fragments.FeedFragment"
+        android:name="com.example.connect.fragments.FeedFragment"
         android:label="FeedFragment"
         tools:layout="@layout/fragment_feed"/>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.connect.Fragments.ProfileFragment"
+        android:name="com.example.connect.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 </navigation>

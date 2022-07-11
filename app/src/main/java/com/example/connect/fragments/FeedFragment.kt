@@ -1,12 +1,8 @@
-package com.example.connect.Fragments
+package com.example.connect.fragments
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
-import androidx.navigation.fragment.findNavController
-import com.example.connect.R
 import com.example.connect.databinding.FragmentFeedBinding
 
 class FeedFragment : Fragment() {
