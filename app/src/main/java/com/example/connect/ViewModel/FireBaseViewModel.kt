@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.connect.Model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
@@ -66,7 +67,7 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun getCurrentUser() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             var user = UserModel()
             val personQuery = db
                 .whereEqualTo("uid", auth.currentUser?.uid)
@@ -79,10 +80,27 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
                     doc.get("bio").toString(),
                     doc.get("photoURL").toString()
                 )
-                currentUser = MutableLiveData(user)
                 Log.d("@@GetCurrentUser", "${currentUser.value}")
             }
+            currentUser.postValue(user)
         }
+//        CoroutineScope(Dispatchers.IO).launch {
+//            var user = UserModel()
+//            val personQuery = db
+//                .whereEqualTo("uid", auth.currentUser?.uid)
+//                .get()
+//                .await()
+//            for (doc in personQuery) {
+//                user = UserModel(
+//                    doc.get("uid").toString(),
+//                    doc.get("fullName").toString(),
+//                    doc.get("bio").toString(),
+//                    doc.get("photoURL").toString()
+//                )
+//                currentUser = MutableLiveData(user)
+//                Log.d("@@GetCurrentUser", "${currentUser.value}")
+//            }
+//        }
     }
 
     fun uploadProfilePic(uri: Uri) {

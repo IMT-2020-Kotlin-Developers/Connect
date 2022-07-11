@@ -5,15 +5,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="FEED"
             android:textSize="32sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_search_vector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_horizontal" />
-
-
+            app:layout_constraintBottom_toBottomOf="@id/textView5"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

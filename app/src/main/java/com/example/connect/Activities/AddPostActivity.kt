@@ -109,7 +109,7 @@ class AddPostActivity : AppCompatActivity() {
     private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(1920, 1920)
+            .setAspectRatio(1080, 720)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
     }

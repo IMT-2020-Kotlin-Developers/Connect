@@ -80,7 +80,8 @@ class ProfileFragment : Fragment() {
         // Reyclerview without view model
         itemList = ArrayList()
         recyclerView = binding.postRecyclerview
-        recyclerView.layoutManager = GridLayoutManager(context,2)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+//        recyclerView.layoutManager = GridLayoutManager(context,2)
 
         db.whereEqualTo("uid",auth.currentUser?.uid).get().addOnSuccessListener {
             val list : List<DocumentSnapshot> = it.documents

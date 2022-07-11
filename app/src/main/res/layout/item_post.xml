@@ -2,31 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="18dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="32dp">
+        android:layout_marginHorizontal="34dp"
+        app:cardCornerRadius="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/light_green">
-        <ImageView
-            android:id="@+id/item_iv"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_gravity="center"
-            android:padding="18dp"
-            android:src="@drawable/ic_add_post_vector" />
+            android:background="@color/grey"
+            android:paddingTop="18sp">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/item_iv"
+                    android:layout_width="225dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    app:shapeAppearanceOverlay="@style/roundedImageView"
+                    android:src="@drawable/ic_add_post_vector" />
             <TextView
                 android:id="@+id/item_description"
                 android:layout_width="match_parent"
