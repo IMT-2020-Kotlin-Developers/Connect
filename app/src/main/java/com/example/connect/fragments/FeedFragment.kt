@@ -76,11 +76,8 @@ class FeedFragment : Fragment() {
 
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-             if(binding.svSearch.visibility == View.VISIBLE){
-                 binding.svSearch.visibility = View.GONE
-                 binding.feedRecycleView.visibility = View.GONE
-//                 binding.ivSearch.visibility = View.VISIBLE
-
+             if(!binding.svSearch.isIconified){
+                 binding.svSearch.isIconified = true
              }else{
                  activity!!.finish()
              }

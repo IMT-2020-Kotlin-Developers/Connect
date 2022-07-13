@@ -5,9 +5,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.connect.model.UserModel
 import com.example.connect.viewModel.FireBaseViewModel
 import com.example.connect.databinding.ActivityUserDetailBinding
@@ -25,6 +28,12 @@ class UserDetailActivity :  AppCompatActivity() {
         setContentView(view)
         viewModel = ViewModelProvider(this)[FireBaseViewModel::class.java]
         auth = FirebaseAuth.getInstance()
+        viewModel = ViewModelProvider(this)[FireBaseViewModel::class.java]
+        viewModel.user().observe(this, Observer {
+            binding.TextInputEtBio.setText(it.bio.toString())
+            binding.TextInputEtName.setText(it.fullName.toString())
+            Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
+        })
         binding.ProfilePic.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Update Profile Picture?")
