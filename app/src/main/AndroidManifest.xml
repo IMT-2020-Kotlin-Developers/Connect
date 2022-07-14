@@ -30,6 +30,9 @@
             android:name=".activities.UserDetailActivity"
             android:exported="true"></activity>
         <activity
+            android:name=".activities.UsersProfile"
+            android:exported="true"></activity>
+        <activity
             android:name=".Splash"
             android:exported="true">
             <intent-filter>

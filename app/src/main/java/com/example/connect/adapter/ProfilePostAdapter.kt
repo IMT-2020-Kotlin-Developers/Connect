@@ -1,5 +1,7 @@
 package com.example.connect.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.connect.model.PostModel
 import com.example.connect.R
+import com.example.connect.activities.UsersProfile
+import com.example.connect.fragments.FeedFragment
+import com.example.connect.model.UserModel
 
 class ProfilePostAdapter(private var posts: ArrayList<PostModel>): RecyclerView.Adapter<ProfilePostAdapter.ViewHolder>(){
     override fun onCreateViewHolder(
@@ -26,12 +31,8 @@ class ProfilePostAdapter(private var posts: ArrayList<PostModel>): RecyclerView.
         Glide.with(holder.itemView.context).load(post.imageUrl).into(holder.postImage)
         holder.postDescription.text = post.description
 
-        // For navigation to item details
-        //        holder.constraintLayout.setOnClickListener{
-        //            val chatUser = User(userDto.userName,userDto.photoUrl,userDto.userId)
-        //            val action = UserListFragmentDirections.actionUserListToChat(chatUser)
-        //            Navigation.findNavController(holder.constraintLayout).navigate(action)
-        //        }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -47,3 +48,4 @@ class ProfilePostAdapter(private var posts: ArrayList<PostModel>): RecyclerView.
         }
     }
 }
+

@@ -21,6 +21,7 @@ class UserDetailActivity :  AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var viewModel: FireBaseViewModel
     lateinit var imageUri: Uri
+    var User = UserModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
@@ -33,6 +34,7 @@ class UserDetailActivity :  AppCompatActivity() {
             binding.TextInputEtBio.setText(it.bio.toString())
             binding.TextInputEtName.setText(it.fullName.toString())
             Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
+
         })
         binding.ProfilePic.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -64,7 +66,7 @@ class UserDetailActivity :  AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
             imageUri = data?.data!!
             viewModel.uploadProfilePic(imageUri)
-            binding.ProfilePic.setImageURI(imageUri)
+
         }
 
     }

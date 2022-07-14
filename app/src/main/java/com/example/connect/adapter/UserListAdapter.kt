@@ -27,9 +27,18 @@ class UserListAdapter(private var user : ArrayList<UserModel>): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: UserListAdapter.ViewHolder, position: Int) {
-        val user = user[position]
-        Glide.with(holder.itemView.context).load(user.photoURL).into(holder.profilePic)
-        holder.fullName.text = user.fullName
+        val User = user[position]
+        Glide.with(holder.itemView.context).load(User.photoURL).into(holder.profilePic)
+        holder.fullName.text = User.fullName
+
+        val context = holder.itemView.context
+        holder.itemView.setOnClickListener {
+            val send = Intent(context , UsersProfile::class.java)
+            send.putExtra("User",User)
+            context.startActivity(send)
+
+        }
+
     }
 
     override fun getItemCount(): Int {
