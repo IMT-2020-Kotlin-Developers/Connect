@@ -63,6 +63,7 @@ class UserDetailActivity :  AppCompatActivity() {
             Log.d("@@onDoneClick", "${User}")
             viewModel.saveUser(User)
             startActivity(Intent(this, HomeActivity::class.java))
+            finishAffinity()
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

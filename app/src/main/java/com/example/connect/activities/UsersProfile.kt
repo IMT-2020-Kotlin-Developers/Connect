@@ -13,6 +13,7 @@ import com.example.connect.databinding.ActivityUserDetailBinding
 import com.example.connect.databinding.ActivityUsersProfileBinding
 import com.example.connect.model.PostModel
 import com.example.connect.model.UserModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -21,6 +22,7 @@ class UsersProfile :  AppCompatActivity()  {
 
     lateinit var binding : ActivityUsersProfileBinding
     lateinit var user : UserModel
+    lateinit var auth: FirebaseAuth
     var db = Firebase.firestore.collection("Posts")
     private var itemList = ArrayList<PostModel>()
     lateinit var recyclerView: RecyclerView
@@ -30,6 +32,7 @@ class UsersProfile :  AppCompatActivity()  {
         binding = ActivityUsersProfileBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        auth = FirebaseAuth.getInstance()
         val bundle: Bundle? = intent.extras
         bundle?.let {
             bundle.apply {
@@ -39,6 +42,22 @@ class UsersProfile :  AppCompatActivity()  {
                 Glide.with(applicationContext).load(user.photoURL).into(binding.ProfilePic)
             }
         }
+        if(user.followers?.indexOf(auth.currentUser?.uid.toString()) != -1){
+            binding.btnFollow.text = "Followed"
+        }
+        else{
+            binding.btnFollow.text = "Follow"
+        }
+
+        binding.btnFollow.setOnClickListener{
+            if(binding.btnFollow.text == "Followed"){
+
+            }
+            else{
+
+            }
+        }
+
         itemList = ArrayList()
         recyclerView = binding.postRecyclerview
         recyclerView.layoutManager = LinearLayoutManager(this)
