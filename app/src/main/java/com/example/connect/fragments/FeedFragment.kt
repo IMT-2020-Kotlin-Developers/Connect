@@ -43,9 +43,10 @@ class FeedFragment : Fragment() {
                     if(User != null){
                         userList.add(User)
                     }
-                    adapter.notifyDataSetChanged()
+
                 }
             }
+          
             val tempArrayList = ArrayList<UserModel>()
             binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(p0: String?): Boolean {

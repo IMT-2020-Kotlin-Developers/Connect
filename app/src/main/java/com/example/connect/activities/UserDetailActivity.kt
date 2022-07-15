@@ -36,6 +36,11 @@ class UserDetailActivity :  AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         viewModel = ViewModelProvider(this)[FireBaseViewModel::class.java]
         viewModel.user().observe(this, Observer {
+            if(it.bio == null)
+                it.bio=""
+            if(it.fullName ==null)
+                it.fullName=""
+
             binding.TextInputEtBio.setText(it.bio.toString())
             binding.TextInputEtName.setText(it.fullName.toString())
             Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
@@ -73,9 +78,10 @@ class UserDetailActivity :  AppCompatActivity() {
             imageUri = data?.data!!
 
             Glide.with(this).load(imageUri).into(binding.ProfilePic)
-            viewModel.uploadProfilePic(imageUri)
+
             CoroutineScope(Dispatchers.IO).launch {
-                User.photoURL = viewModel.downloadProfilePic()
+                User.photoURL =    viewModel.uploadProfilePic(imageUri)
+
                 Log.d("@@Download and assigned", "${User.photoURL}")
             }
 

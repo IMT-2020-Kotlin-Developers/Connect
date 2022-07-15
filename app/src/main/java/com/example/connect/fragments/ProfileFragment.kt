@@ -47,9 +47,12 @@ class ProfileFragment : Fragment() {
             binding.tvBio.setText(it.bio.toString())
             binding.tvName.setText(it.fullName.toString())
             Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
+            binding.tvFollowers.text = it.followers?.size.toString()
+            binding.tvFollowing.text = it.following?.size.toString()
             Log.d("@@getobserve", "${it.photoURL}")
             Log.d("@@getobserve", "${it.fullName}")
         })
+
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()

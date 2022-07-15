@@ -75,17 +75,21 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
                     doc.get("uid").toString(),
                     doc.get("fullName").toString(),
                     doc.get("bio").toString(),
-                    doc.get("photoURL").toString()
+                    doc.get("photoURL").toString(),
+                    arrayListOf(doc.get("following").toString()),
+                    arrayListOf(doc.get("followers").toString())
                 )
-                Log.d("@@GetCurrentUser", "${currentUser.value}")
+
+
+                Log.d("@@GetCurrentUser", "${user}")
             }
             currentUser.postValue(user)
         }
     }
 
-    fun uploadProfilePic(uri: Uri) {
+   suspend fun uploadProfilePic(uri: Uri) : String{
         val Uid = auth.currentUser?.uid
-        CoroutineScope(Dispatchers.IO).launch {
+
             try {
                 storageReference.child("$Uid/profilePic").putFile(uri).await()
                 URL = storageReference
@@ -97,16 +101,9 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
                     Log.d("@@@@", e.message.toString())
                 }
             }
-        }
+       return URL
     }
-
-    suspend fun downloadProfilePic() : String{
-                URL = storageReference
-                    .child("${auth.currentUser?.uid}/profilePic")
-                    .downloadUrl.await().toString()
-                Log.d("@@Imgae", "$URL")
-        return URL
-    }
-
-
 }
+
+
+
