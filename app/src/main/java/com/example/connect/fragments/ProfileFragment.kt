@@ -42,6 +42,7 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(activity!!)[FireBaseViewModel::class.java]
         auth = FirebaseAuth.getInstance()
+
         viewModel.user().observe(viewLifecycleOwner, Observer {
             binding.tvBio.setText(it.bio.toString())
             binding.tvName.setText(it.fullName.toString())
@@ -49,9 +50,7 @@ class ProfileFragment : Fragment() {
             Log.d("@@getobserve", "${it.photoURL}")
             Log.d("@@getobserve", "${it.fullName}")
         })
-        binding.ProfilePic.setOnClickListener {
 
-        }
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             startActivity(Intent(context,MainActivity::class.java))

@@ -14,7 +14,12 @@ import com.bumptech.glide.Glide
 import com.example.connect.model.UserModel
 import com.example.connect.viewModel.FireBaseViewModel
 import com.example.connect.databinding.ActivityUserDetailBinding
+import com.example.connect.fragments.ProfileFragment
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class UserDetailActivity :  AppCompatActivity() {
     lateinit var binding : ActivityUserDetailBinding
@@ -34,7 +39,7 @@ class UserDetailActivity :  AppCompatActivity() {
             binding.TextInputEtBio.setText(it.bio.toString())
             binding.TextInputEtName.setText(it.fullName.toString())
             Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
-
+            User.photoURL = it.photoURL
         })
         binding.ProfilePic.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -52,10 +57,10 @@ class UserDetailActivity :  AppCompatActivity() {
             alertDialog.show()
         }
         binding.btDone.setOnClickListener {
-            var User = UserModel(auth.uid, "", "", "")
+            User.uid = auth.currentUser?.uid
             User.fullName = binding.TextInputEtName.text.toString()
             User.bio = binding.TextInputEtBio.text.toString()
-            User.photoURL = auth.currentUser?.photoUrl.toString()
+            Log.d("@@onDoneClick", "${User}")
             viewModel.saveUser(User)
             startActivity(Intent(this, HomeActivity::class.java))
         }
@@ -65,7 +70,13 @@ class UserDetailActivity :  AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == 100) {
             imageUri = data?.data!!
+
+            Glide.with(this).load(imageUri).into(binding.ProfilePic)
             viewModel.uploadProfilePic(imageUri)
+            CoroutineScope(Dispatchers.IO).launch {
+                User.photoURL = viewModel.downloadProfilePic()
+                Log.d("@@Download and assigned", "${User.photoURL}")
+            }
 
         }
 

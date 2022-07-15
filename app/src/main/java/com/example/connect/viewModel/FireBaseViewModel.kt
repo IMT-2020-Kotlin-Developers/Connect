@@ -34,29 +34,23 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
 
     fun saveUser(user: UserModel) = CoroutineScope(Dispatchers.IO).launch {
         try {
-            user.photoURL = URL
             val personQuery = db
                 .whereEqualTo("uid", user.uid)
                 .get()
                 .await()
             if (personQuery.documents.isNotEmpty()) {
                 try {
-                    downloadProfilePic()
-                    user.photoURL = URL
                     for (Doc in personQuery) {
                         db.document(Doc.id).set(user, SetOptions.merge()).await()
                         Log.d("@@Save", "${user}")
                     }
                     currentUser = MutableLiveData(user)
                 } catch (e: Exception) {
-
                 }
             } else {
                 try {
-
                     db.add(user).await()
                     currentUser = MutableLiveData(user)
-
                 } catch (e: Exception) {
 
                 }
@@ -106,19 +100,12 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun downloadProfilePic() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
+    suspend fun downloadProfilePic() : String{
                 URL = storageReference
                     .child("${auth.currentUser?.uid}/profilePic")
                     .downloadUrl.await().toString()
                 Log.d("@@Imgae", "$URL")
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Log.d("@@@@", e.message.toString())
-                }
-            }
-        }
+        return URL
     }
 
 
