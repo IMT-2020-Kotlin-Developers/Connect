@@ -65,6 +65,9 @@ class UserDetailActivity :  AppCompatActivity() {
             User.uid = auth.currentUser?.uid
             User.fullName = binding.TextInputEtName.text.toString()
             User.bio = binding.TextInputEtBio.text.toString()
+            User.following = viewModel.user().value?.following
+            User.followers = viewModel.user().value?.followers
+
             Log.d("@@onDoneClick", "${User}")
             viewModel.saveUser(User)
             startActivity(Intent(this, HomeActivity::class.java))

@@ -19,7 +19,7 @@ class ProfilePostAdapter(private var posts: ArrayList<PostModel>): RecyclerView.
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ProfilePostAdapter.ViewHolder {
+    ): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_post,parent,false)
 
@@ -30,11 +30,11 @@ class ProfilePostAdapter(private var posts: ArrayList<PostModel>): RecyclerView.
         val post = posts[position]
         Glide.with(holder.itemView.context).load(post.imageUrl).into(holder.postImage)
         holder.postDescription.text = post.description
-
-
-
     }
-
+    fun updateAdapter(mPosts: ArrayList<PostModel>) {
+        this.posts = mPosts
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return posts.size
     }

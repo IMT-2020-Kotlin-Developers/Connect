@@ -52,6 +52,7 @@ class UsersProfile :  AppCompatActivity()  {
                 binding.tvName.text = user.fullName
                 binding.tvBio.text = user.bio
                 Glide.with(applicationContext).load(user.photoURL).into(binding.ProfilePic)
+                Log.d("@@USer", "${user}")
             }
         }
         if(user.followers?.indexOf(auth.currentUser?.uid.toString()) == -1){
@@ -68,6 +69,7 @@ class UsersProfile :  AppCompatActivity()  {
             userTemp = UserModel(
                 it.uid,it.fullName,it.bio,it.photoURL,it.following,it.followers
             )
+            Log.d("@@USer", "${user}")
 
         }
         binding.tvFollowers.text = user.followers?.size.toString()
@@ -75,22 +77,27 @@ class UsersProfile :  AppCompatActivity()  {
 
         binding.btnFollow.setOnClickListener{
             if(binding.btnFollow.text == "Followed"){
-                userTemp.following?.remove(user.uid!!)
-                user.followers?.remove(userTemp.uid!!)
-                viewModel.saveUser(userTemp)
-                viewModel.saveUser(user)
-                binding.btnFollow.text = "Follow"
-                binding.tvFollowing.text = user.following?.size.toString()
+
+                    userTemp.following?.remove(user.uid!!)
+                    user.followers?.remove(userTemp.uid!!)
+                    viewModel.saveUser(userTemp)
+                    viewModel.saveUser(user)
+                    binding.btnFollow.text = "Follow"
+                    binding.tvFollowing.text = user.following?.size.toString()
+
+
             }
             else{
-                userTemp.following?.add(user.uid!!)
-                user.followers?.add(userTemp.uid!!)
-                Log.d("@@Follow?", "${userTemp}")
-                Log.d("@@Follow?", "${user}")
-                viewModel.saveUser(userTemp)
-                viewModel.saveUser(user)
-                binding.btnFollow.text = "Followed"
-                binding.tvFollowers.text = user.followers?.size.toString()
+
+                    userTemp.following?.add(user.uid!!)
+                    user.followers?.add(userTemp.uid!!)
+                    Log.d("@@Follow?", "${userTemp}")
+                    Log.d("@@Follow?", "${user}")
+                    viewModel.saveUser(userTemp)
+                    viewModel.saveUser(user)
+                    binding.btnFollow.text = "Followed"
+                    binding.tvFollowers.text = user.followers?.size.toString()
+
             }
 
         }

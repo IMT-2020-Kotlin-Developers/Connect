@@ -8,9 +8,11 @@
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_home.xml" value="0.10648148148148148" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_user_detail.xml" value="0.12360688956433637" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_users_profile.xml" value="0.11481481481481481" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
-        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_post.xml" value="0.10185185185185185" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_feed.xml" value="0.264" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_post.xml" value="0.128" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_user.xml" value="0.17028985507246377" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/register_activity.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/drawable/ic_baseline_note_24.xml" value="0.2601851851851852" />

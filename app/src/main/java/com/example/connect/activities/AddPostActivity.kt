@@ -8,10 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.connect.model.PostModel
 import com.example.connect.databinding.ActivityAddPostBinding
+import com.example.connect.model.UserModel
+import com.example.connect.viewModel.FireBaseViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -28,6 +33,7 @@ class AddPostActivity : AppCompatActivity() {
     lateinit var uri:Uri
     val IMAGE_PICKER_CODE = 100
     private var picked = 0
+    lateinit var viewModel: FireBaseViewModel
     private lateinit var auth: FirebaseAuth
     private lateinit var storageReference: StorageReference
     var db = Firebase.firestore.collection("Posts")
@@ -38,52 +44,75 @@ class AddPostActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
         storageReference = FirebaseStorage.getInstance().getReference()
-        binding.cardView.setOnClickListener{
+        viewModel = ViewModelProvider(this)[FireBaseViewModel::class.java]
+        binding.cardView.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             startActivityForResult(intent, IMAGE_PICKER_CODE)
         }
-        binding.btDone.setOnClickListener{
-            Log.d("","Clicked")
-            if(picked == 0){
-                Toast.makeText(this,"Choose image",Toast.LENGTH_SHORT).show()
-            }
-            else if(binding.etText.text.isNullOrEmpty()){
-                Toast.makeText(this,"Enter text",Toast.LENGTH_SHORT).show()
-            }
-            else{
+        var User = UserModel()
+        viewModel.user().observe(this, Observer {
+            User = it
+        })
+        binding.btDone.setOnClickListener {
+            Log.d("", "Clicked")
+            if (picked == 0) {
+                Toast.makeText(this, "Choose image", Toast.LENGTH_SHORT).show()
+            } else if (binding.etText.text.isNullOrEmpty()) {
+                Toast.makeText(this, "Enter text", Toast.LENGTH_SHORT).show()
+            } else {
                 binding.btDone.visibility = View.GONE
                 binding.pbAddPost.visibility = View.VISIBLE
-                val postReference = storageReference.child("posts/${System.currentTimeMillis()}-photo.jpg")
+
+                val postReference =
+                    storageReference.child("posts/${System.currentTimeMillis()}-photo.jpg")
                 CoroutineScope(Dispatchers.IO).launch {
-                    postReference.putFile(uri).addOnSuccessListener {
-                        postReference.downloadUrl.addOnSuccessListener {
-                            Log.d("Post Upload",it.toString())
-                            val post = PostModel(auth.currentUser?.uid,it.toString(),binding.etText.text.toString(),System.currentTimeMillis())
-                            db.add(post).addOnSuccessListener {
-                                Log.d("Post Upload","Success")
-                                finish()
-                            }.addOnFailureListener{
+
+
+                            postReference.putFile(uri).addOnSuccessListener {
+                                postReference.downloadUrl.addOnSuccessListener {
+                                    Log.d("Post Upload", it.toString())
+                                    val post = PostModel(
+                                        auth.currentUser?.uid,
+                                        it.toString(),
+                                        binding.etText.text.toString(),
+                                        User.fullName,
+                                        User.photoURL,
+                                        System.currentTimeMillis()
+                                    )
+                                    db.add(post).addOnSuccessListener {
+                                        Log.d("Post Upload", "Success")
+                                        finish()
+                                    }.addOnFailureListener {
+                                        binding.pbAddPost.visibility = View.GONE
+                                        binding.btDone.visibility = View.VISIBLE
+                                        Toast.makeText(
+                                            applicationContext,
+                                            it.message,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }.addOnFailureListener {
+                                    binding.pbAddPost.visibility = View.GONE
+                                    binding.btDone.visibility = View.VISIBLE
+                                    Toast.makeText(
+                                        applicationContext,
+                                        it.message,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }.addOnFailureListener {
                                 binding.pbAddPost.visibility = View.GONE
                                 binding.btDone.visibility = View.VISIBLE
-                                Toast.makeText(applicationContext,it.message,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT)
+                                    .show()
                             }
-                        }.addOnFailureListener{
-                            binding.pbAddPost.visibility = View.GONE
-                            binding.btDone.visibility = View.VISIBLE
-                            Toast.makeText(applicationContext,it.message,Toast.LENGTH_SHORT).show()
-                        }
-                    }.addOnFailureListener{
-                        binding.pbAddPost.visibility = View.GONE
-                        binding.btDone.visibility = View.VISIBLE
-                        Toast.makeText(applicationContext,it.message,Toast.LENGTH_SHORT).show()
-                    }
-                }
 
+
+                }
             }
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == IMAGE_PICKER_CODE && resultCode == Activity.RESULT_OK && data != null){
@@ -109,4 +138,5 @@ class AddPostActivity : AppCompatActivity() {
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(this)
     }
+
 }

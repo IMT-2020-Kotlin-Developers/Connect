@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed(Runnable {
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
-            }, 1000)
+            }, 500)
         }
         binding.btLogIn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))

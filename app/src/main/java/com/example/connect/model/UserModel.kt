@@ -11,5 +11,5 @@ data class UserModel (
     var bio :String? = null,
     var photoURL : String? = null,
     var following: ArrayList<String>? = arrayListOf() ,
-    var followers: ArrayList<String>? = arrayListOf()
+    var followers: ArrayList<String>?= arrayListOf()
         ): Parcelable

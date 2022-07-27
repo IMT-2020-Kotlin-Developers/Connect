@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.connect.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -66,24 +67,45 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     fun getCurrentUser() {
         viewModelScope.launch(Dispatchers.IO) {
             var user = UserModel()
-            val personQuery = db
-                .whereEqualTo("uid", auth.currentUser?.uid)
-                .get()
-                .await()
-            for (doc in personQuery) {
-                user = UserModel(
-                    doc.get("uid").toString(),
-                    doc.get("fullName").toString(),
-                    doc.get("bio").toString(),
-                    doc.get("photoURL").toString(),
-                    arrayListOf(doc.get("following").toString()),
-                    arrayListOf(doc.get("followers").toString())
-                )
-
-
-                Log.d("@@GetCurrentUser", "${user}")
+            db.get().addOnSuccessListener{
+                val list : List<DocumentSnapshot> = it.documents
+                for(currUser in list){
+                    val User : UserModel? = currUser.toObject(UserModel::class.java)
+                    if(User != null && User.uid == auth.currentUser?.uid){
+                        Log.d("UserDataFetch","inside if")
+                        Log.d("UserDataFetch",User?.uid.toString())
+                        user = User
+                        currentUser.postValue(User!!)
+                        break
+                    }
+                }
             }
-            currentUser.postValue(user)
+
+//            val personQuery = db
+//                .whereEqualTo("uid", auth.currentUser?.uid)
+//                .get()
+//                .await()
+//            for (doc in personQuery) {
+//                var storeArrayListFollowing: ArrayList<String>
+//                var storeArrayListFollowers: ArrayList<String>
+//
+//                user = UserModel(
+//                    doc.get("uid").toString(),
+//                    doc.get("fullName").toString(),
+//                    doc.get("bio").toString(),
+//                    doc.get("photoURL").toString(),
+//                    arrayListOf(doc.get("following").toString()),
+//                    arrayListOf(doc.get("followers").toString())
+//                )
+//
+//                if(user.following?.size == 0)
+//                    user.following = ArrayList()
+//                if(user.followers?.size == 0)
+//                    user.followers = ArrayList()
+                Log.d("@@GetCurrentUser", "${user}")
+//            }
+
+//            currentUser.postValue(user)
         }
     }
 
