@@ -8,11 +8,9 @@
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_home.xml" value="0.10648148148148148" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_user_detail.xml" value="0.12360688956433637" />
-        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/activity_users_profile.xml" value="0.11481481481481481" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
-        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_feed.xml" value="0.264" />
-        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_post.xml" value="0.128" />
+        <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_post.xml" value="0.10185185185185185" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/item_user.xml" value="0.17028985507246377" />
         <entry key="..\:/Android Project/Connect/app/src/main/res/layout/register_activity.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/drawable/ic_baseline_note_24.xml" value="0.2601851851851852" />
@@ -25,15 +23,20 @@
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/drawable/ic_whitebutton.xml" value="0.165625" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/drawable/rounded_left_button.xml" value="0.1625" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/drawable/rounded_right_button.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/drawable/search_item.xml" value="0.2703125" />
+        <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/activity_add_post.xml" value="0.14628623188405798" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/activity_home.xml" value="0.152" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/activity_user_detail.xml" value="0.1" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/activity_users_profile.xml" value="0.264" />
+        <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_chat.xml" value="0.1875" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_intro_screen.xml" value="0.2" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_log_in.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_notification.xml" value="0.1" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_profile.xml" value="0.152" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/fragment_sign_in.xml" value="0.2" />
+        <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/item_feed.xml" value="0.264" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/register_activity.xml" value="0.2" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/sign_in_activity.xml" value="0.2" />
         <entry key="..\:/Users/pande/Desktop/My Android Projects/Connect/app/src/main/res/layout/splash.xml" value="0.2" />

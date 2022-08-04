@@ -19,6 +19,7 @@ import com.example.connect.adapter.ProfilePostAdapter
 import com.example.connect.model.PostModel
 import com.example.connect.viewModel.FireBaseViewModel
 import com.example.connect.databinding.FragmentProfileBinding
+import com.example.connect.model.UserModel
 import com.example.connect.glide.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -48,10 +49,11 @@ class ProfileFragment : Fragment() {
         viewModel.user().observe(viewLifecycleOwner, Observer {
             binding.tvBio.setText(it.bio.toString())
             binding.tvName.setText(it.fullName.toString())
-            GlideApp.with(this).load(it.photoURL).into(binding.ProfilePic)
+            Glide.with(this).load(it.photoURL).into(binding.ProfilePic)
             binding.tvFollowers.text = it.followers?.size.toString()
             binding.tvFollowing.text = it.following?.size.toString()
-            Log.d("@@getobserve", "${it}")
+            Log.d("@@getobserve", "${it.photoURL}")
+            Log.d("@@getobserve", "${it.fullName}")
         })
 
 

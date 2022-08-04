@@ -24,35 +24,41 @@
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:backgroundTint="@color/light_green">
 
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="300dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_add_post_vector" />
+            android:src="@drawable/ic_add_post_vector"
+            android:paddingVertical="16dp"/>
     </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/et_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
         android:hint="Add text here"
-        android:layout_marginHorizontal="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        android:layout_margin="32dp"
+        android:background="@drawable/search_item"
+        android:gravity="top"
+        android:padding="8dp"/>
 
     <Button
         android:id="@+id/bt_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
-        android:textSize="32sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_text" />
+        android:layout_marginBottom="16dp"/>
 
     <ProgressBar
         android:id="@+id/pb_addPost"

@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="18dp"
-
     >
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -20,7 +19,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#D6FFDF"
-            android:paddingTop="18sp">
+            android:paddingTop="8sp"
+            android:paddingBottom="4dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,10 +29,8 @@
                 android:id="@+id/iv_itemProfilePic"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/circle"
-                />
+                android:background="@drawable/circle"/>
                 <TextView
                     android:id="@+id/iv_itemFullName"
                     android:layout_width="wrap_content"
@@ -41,10 +39,16 @@
                     android:layout_marginEnd="5dp"
                     android:textSize="20dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    />
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
-
+            <TextView
+                android:id="@+id/item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:paddingBottom="18dp"/>
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/item_iv"
                 android:layout_width="match_parent"
@@ -54,14 +58,49 @@
                 android:scaleType="fitXY"
                 app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:src="@drawable/ic_add_post_vector" />
-            <TextView
-                android:id="@+id/item_description"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:paddingBottom="18dp"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_vector_likes"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tv_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="2"/>
+                <ImageView
+                    android:id="@+id/iv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_vector_comments"
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tv_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="2"/>
+                <ImageView
+                    android:id="@+id/iv_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_vector_share"
+                    android:layout_marginLeft="32dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,8 @@ import com.example.connect.fragments.ProfileFragment
 import com.example.connect.R
 import com.example.connect.viewModel.HomeActivityViewModel
 import com.example.connect.databinding.ActivityHomeBinding
+import com.example.connect.fragments.ChatFragment
+import com.example.connect.fragments.NotificationFragment
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -24,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavView.background = null
         binding.bottomNavView.menu.getItem(2).isEnabled = false
 
-        val viewModel: HomeActivityViewModel = ViewModelProvider(this).get(HomeActivityViewModel::class.java)
+        val viewModel:  HomeActivityViewModel= ViewModelProvider(this).get(HomeActivityViewModel::class.java)
         viewModel.fragment().observe(this, Observer {
             setCurrentFragment(it)
         })
@@ -36,6 +38,12 @@ class HomeActivity : AppCompatActivity() {
                 R.id.bnProfile -> {
                     Log.d("Profile", "Clicked")
                     viewModel.setCurrFragment(ProfileFragment())
+                }
+                R.id.bnChat -> {
+                    viewModel.setCurrFragment(ChatFragment())
+                }
+                R.id.bnNotification-> {
+                    viewModel.setCurrFragment(NotificationFragment())
                 }
             }
             true
