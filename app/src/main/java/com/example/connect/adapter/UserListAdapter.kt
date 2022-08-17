@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.connect.R
 import com.example.connect.activities.UsersProfile
+import com.example.connect.model.PostModel
 import com.example.connect.model.UserModel
 import com.google.firebase.firestore.auth.User
 
@@ -40,7 +41,10 @@ class UserListAdapter(private var user : ArrayList<UserModel>): RecyclerView.Ada
         }
 
     }
-
+    fun updateAdapter(mUser: ArrayList<UserModel>) {
+        this.user = mUser
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
      return user.size
     }

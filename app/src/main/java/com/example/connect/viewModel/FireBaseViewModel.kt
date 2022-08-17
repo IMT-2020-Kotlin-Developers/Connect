@@ -26,6 +26,7 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
     var storageReference = Firebase.storage.reference
     private var currentUser = MutableLiveData<UserModel>(UserModel("","","",""))
     var URL = ""
+    var user = UserModel()
     init {
         getCurrentUser()
     }
@@ -66,7 +67,6 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
 
     fun getCurrentUser() {
         viewModelScope.launch(Dispatchers.IO) {
-            var user = UserModel()
             db.get().addOnSuccessListener{
                 val list : List<DocumentSnapshot> = it.documents
                 for(currUser in list){
@@ -76,36 +76,11 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
                         Log.d("UserDataFetch",User?.uid.toString())
                         user = User
                         currentUser.postValue(User!!)
+                        Log.d("@@btnFollow" , user.toString())
                         break
                     }
                 }
             }
-
-//            val personQuery = db
-//                .whereEqualTo("uid", auth.currentUser?.uid)
-//                .get()
-//                .await()
-//            for (doc in personQuery) {
-//                var storeArrayListFollowing: ArrayList<String>
-//                var storeArrayListFollowers: ArrayList<String>
-//
-//                user = UserModel(
-//                    doc.get("uid").toString(),
-//                    doc.get("fullName").toString(),
-//                    doc.get("bio").toString(),
-//                    doc.get("photoURL").toString(),
-//                    arrayListOf(doc.get("following").toString()),
-//                    arrayListOf(doc.get("followers").toString())
-//                )
-//
-//                if(user.following?.size == 0)
-//                    user.following = ArrayList()
-//                if(user.followers?.size == 0)
-//                    user.followers = ArrayList()
-                Log.d("@@GetCurrentUser", "${user}")
-//            }
-
-//            currentUser.postValue(user)
         }
     }
 
@@ -124,6 +99,20 @@ class FireBaseViewModel(application: Application) : AndroidViewModel(application
                 }
             }
        return URL
+    }
+
+   fun isFollowing ( uid : String) : Boolean {
+       getCurrentUser()
+        var following = user.following!!
+       Log.d("@@btntemp" , user.following.toString())
+        for(data in following){
+            if(data == uid){
+                Log.d("@@btntemp" , data)
+                return true;
+            }
+            Log.d("@@btntemp" , data)
+        }
+        return false
     }
 }
 

@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -16,16 +17,17 @@ import com.example.connect.viewModel.FireBaseViewModel
 import com.example.connect.databinding.ActivityUserDetailBinding
 import com.example.connect.fragments.ProfileFragment
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 
 class UserDetailActivity :  AppCompatActivity() {
     lateinit var binding : ActivityUserDetailBinding
     lateinit var auth: FirebaseAuth
     lateinit var viewModel: FireBaseViewModel
     lateinit var imageUri: Uri
+    var storageReference = Firebase.storage.reference
     var User = UserModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +60,8 @@ class UserDetailActivity :  AppCompatActivity() {
             builder.setNegativeButton("No") { dialogInterface, which ->
             }
             val alertDialog: AlertDialog = builder.create()
+            binding.btDone.visibility = View.GONE
+            binding.progressBarImageLoading.visibility = View.VISIBLE
             alertDialog.setCancelable(false)
             alertDialog.show()
         }
@@ -82,11 +86,31 @@ class UserDetailActivity :  AppCompatActivity() {
 
             Glide.with(this).load(imageUri).into(binding.ProfilePic)
 
-            CoroutineScope(Dispatchers.IO).launch {
-                User.photoURL =    viewModel.uploadProfilePic(imageUri)
 
-                Log.d("@@Download and assigned", "${User.photoURL}")
-            }
+//                User.photoURL =    viewModel.uploadProfilePic(imageUri)
+                try {
+                    storageReference.child("${auth.currentUser?.uid}/profilePic").putFile(imageUri)
+                        .addOnSuccessListener {
+                            storageReference
+                                .child("${auth.currentUser?.uid}/profilePic")
+                                .downloadUrl.addOnSuccessListener {
+                                    User.photoURL = it.toString()
+                                    binding.progressBarImageLoading.visibility = View.GONE
+                                    binding.btDone.visibility = View.VISIBLE
+                                    Log.d("@@Imgae", "${User.photoURL}")
+                                }
+                                .addOnFailureListener {
+                                    Log.d("@@@@", it.message.toString())
+                                }
+                        }
+                        .addOnFailureListener{
+                            Log.d("@@@@", it.message.toString())
+                        }
+                } catch (e: Exception) {
+                    Log.d("@@@@", e.message.toString())
+                }
+
+            Log.d("@@Download and assigned", "${User.photoURL}")
 
         }
 

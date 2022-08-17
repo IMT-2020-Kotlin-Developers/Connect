@@ -28,6 +28,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
+import android.widget.AbsListView
+
+
+
 
 class FeedFragment : Fragment() {
 
@@ -99,12 +103,38 @@ class FeedFragment : Fragment() {
 //            adapterProfile.notifyDataSetChanged()
             adapterFeedProfile.updateAdapter(itemList)
 
+
             Log.d("@@ObserveInfeed ",itemList.toString())
         })
+
         adapterFeedProfile = FeedPostAdapter(itemList)
 //        itemList.add(PostModel("v0dBqhi8QIeUkASWiYtE","https://firebasestorage.googleapis.com/v0/b/connect-f04dd.appspot.com/o/I6pSv0IX9CesEhs1dx9CXexvVaE2%2FprofilePic?alt=media&token=6d5b7ea3-55e0-49f1-9693-049f00e3ccb6",
 //        "Hehe",111651654))
         recyclerViewPosts.adapter = adapterFeedProfile
+
+//        recyclerViewPosts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                if (dy > 0) {
+//                    if(binding.svSearch.visibility != View.GONE){
+//                        binding.svSearch.visibility = View.GONE
+//                    }
+//                } else if (dy < 0) {
+//                    if(binding.svSearch.visibility != View.VISIBLE){
+//                        binding.svSearch.visibility = View.VISIBLE
+//                    }
+//                }
+//            }
+//
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//                when (newState) {
+//                    AbsListView.OnScrollListener.SCROLL_STATE_FLING -> println("SCROLL_STATE_FLING")
+//                    AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL -> binding.svSearch.visibility = View.GONE
+//                    else -> {
+//                    }
+//                }
+//            }
+//        })
         recyclerView.adapter = adapter
         Log.d("@@Check For Feed ",itemList.toString())
 //        adapterProfile.notifyItemInserted(itemList.size - 1)

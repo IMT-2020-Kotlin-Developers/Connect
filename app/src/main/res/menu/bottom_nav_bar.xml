@@ -5,7 +5,7 @@
      android:icon="@drawable/ic_home_vector"/>
     <item android:id="@+id/bnChat"
         android:title="Chat"
-        android:icon="@drawable/ic_comment"/>
+        android:icon="@drawable/ic_vector_comments"/>
     <item android:id="@+id/bnPost"
         android:title=""/>
     <item android:id="@+id/bnNotification"

@@ -69,45 +69,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application)  {
         }
 
 
-//        dbPost.get().addOnSuccessListener {
-//            val list: List<DocumentSnapshot> = it.documents
-//            Log.d("Fetching", list.toString())
-//            for (data in list) {
-//                val post: PostModel? = data.toObject(PostModel::class.java)
-//                if (post != null) {
-//                    Log.d("@@User", post.uid.toString())
-//
-//                    postList.add(post)
-//
-//                    Log.d("@@post", "${currentPosts}")
-//                } else {
-//                    Log.d("Post", "Null")
-//                }
-//
-//            }
-//            currentPosts.postValue(postList)
-//        }
 
     }
 
-    fun updateLikeAndCommentPost(uid : String,likes: Int, comments : Int)  = CoroutineScope(Dispatchers.IO).launch{
-        val personQuery = dbPost.whereEqualTo("uid",uid).get().await()
-        var post = PostModel()
 
-        if (personQuery.documents.isNotEmpty()) {
-            try {
-                for (Doc in personQuery) {
-                    post = dbPost.document(Doc.id).get() as PostModel
-                    var likes = LikeModel(likes,uid,"","")
-                    post.likes.add(likes)
-                    dbPost.document(Doc.id).set(post, SetOptions.merge()).await()
-                    Log.d("@@ulacp", "${post}")
-                }
-
-            } catch (e: Exception) {
-            }
-        }
-    }
 
 
 }

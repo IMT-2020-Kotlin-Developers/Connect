@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.connect.fragments.FeedFragment
 import com.example.connect.fragments.ProfileFragment
 import com.example.connect.R
@@ -14,6 +15,7 @@ import com.example.connect.viewModel.HomeActivityViewModel
 import com.example.connect.databinding.ActivityHomeBinding
 import com.example.connect.fragments.ChatFragment
 import com.example.connect.fragments.NotificationFragment
+import com.example.connect.viewModel.PostViewModel
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -30,7 +32,8 @@ class HomeActivity : AppCompatActivity() {
         viewModel.fragment().observe(this, Observer {
             setCurrentFragment(it)
         })
-
+        val viewModel2 : PostViewModel = ViewModelProvider(this)[PostViewModel::class.java]
+        val bundle: Bundle? = intent.extras
 //        setCurrentFragment(feedFragment)
         binding.bottomNavView.setOnItemSelectedListener {
             when (it.itemId) {

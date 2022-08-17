@@ -1,5 +1,6 @@
 package com.example.connect.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -55,15 +56,23 @@ class UsersProfile :  AppCompatActivity()  {
                 Log.d("@@USer", "${user}")
             }
         }
-        if(user.followers?.indexOf(auth.currentUser?.uid.toString()) == -1){
-
-            binding.btnFollow.text = "Follow"
-            Log.d("@@", "${user.followers?.indexOf(auth.currentUser?.uid.toString())}")
-        }
-        else{
-            binding.btnFollow.text = "Followed"
-            Log.d("@@", "${user.followers?.indexOf(auth.currentUser?.uid.toString())}")
-        }
+        binding.btnFollow.text = "Wait"
+       if( viewModel.isFollowing(user.uid!!) ){
+           binding.btnFollow.text = "Followed"
+           Log.d("@@btnFollowed", "I am here")
+       }else{
+           binding.btnFollow.text = "Follow"
+           Log.d("@@btnFollow", "I am here")
+       }
+//        if(user.followers?.indexOf(auth.currentUser?.uid.toString()) == -1){
+//
+//            binding.btnFollow.text = "Follow"
+//            Log.d("@@", "${user.followers?.indexOf(auth.currentUser?.uid.toString())}")
+//        }
+//        else{
+//            binding.btnFollow.text = "Followed"
+//            Log.d("@@", "${user.followers?.indexOf(auth.currentUser?.uid.toString())}")
+//        }
         var userTemp = UserModel()
         viewModel.user().observe(this){
             userTemp = UserModel(
@@ -80,24 +89,20 @@ class UsersProfile :  AppCompatActivity()  {
 
                     userTemp.following?.remove(user.uid!!)
                     user.followers?.remove(userTemp.uid!!)
-                    viewModel.saveUser(userTemp)
-                    viewModel.saveUser(user)
-                    binding.btnFollow.text = "Follow"
-                    binding.tvFollowing.text = user.following?.size.toString()
-
-
+                viewModel.saveUser(userTemp)
+                viewModel.saveUser(user)
+                binding.btnFollow.text = "Follow"
+                binding.tvFollowing.text = user.following?.size.toString()
+                startActivity(Intent(this, HomeActivity::class.java))
             }
             else{
-
                     userTemp.following?.add(user.uid!!)
                     user.followers?.add(userTemp.uid!!)
-                    Log.d("@@Follow?", "${userTemp}")
-                    Log.d("@@Follow?", "${user}")
-                    viewModel.saveUser(userTemp)
-                    viewModel.saveUser(user)
-                    binding.btnFollow.text = "Followed"
-                    binding.tvFollowers.text = user.followers?.size.toString()
-
+                viewModel.saveUser(userTemp)
+                viewModel.saveUser(user)
+                binding.btnFollow.text = "Followed"
+                binding.tvFollowers.text = user.followers?.size.toString()
+                startActivity(Intent(this, HomeActivity::class.java))
             }
 
         }

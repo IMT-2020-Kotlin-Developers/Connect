@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
         <SearchView
             android:id="@+id/sv_Search"
             android:layout_width="match_parent"
-            android:searchIcon="@drawable/ic_search_vector"
+            android:layout_height="wrap_content"
             android:layoutDirection="rtl"
-            android:layout_height="wrap_content"
-           app:layout_constraintTop_toTopOf="parent"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/feed_RecycleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/sv_Search"/>
+            android:searchIcon="@drawable/ic_search_vector"
+            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feed_RecycleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/sv_Search" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/post_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/feed_RecycleView" />
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/post_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_green"
+                app:layout_constraintTop_toBottomOf="@id/feed_RecycleView"
+                />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
