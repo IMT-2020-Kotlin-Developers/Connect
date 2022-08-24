@@ -38,7 +38,7 @@ class UsersProfile :  AppCompatActivity()  {
     private var itemList = ArrayList<PostModel>()
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: ProfilePostAdapter
-
+    var iFollow = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUsersProfileBinding.inflate(layoutInflater)
@@ -53,34 +53,37 @@ class UsersProfile :  AppCompatActivity()  {
                 binding.tvName.text = user.fullName
                 binding.tvBio.text = user.bio
                 Glide.with(applicationContext).load(user.photoURL).into(binding.ProfilePic)
-                Log.d("@@USer", "${user}")
+                Log.d("@@USer to see", "${user}")
             }
         }
-        binding.btnFollow.text = "Wait"
-       if( viewModel.isFollowing(user.uid!!) ){
-           binding.btnFollow.text = "Followed"
-           Log.d("@@btnFollowed", "I am here")
-       }else{
-           binding.btnFollow.text = "Follow"
-           Log.d("@@btnFollow", "I am here")
-       }
-//        if(user.followers?.indexOf(auth.currentUser?.uid.toString()) == -1){
-//
-//            binding.btnFollow.text = "Follow"
-//            Log.d("@@", "${user.followers?.indexOf(auth.currentUser?.uid.toString())}")
-//        }
-//        else{
-//            binding.btnFollow.text = "Followed"
-//            Log.d("@@", "${user.followers?.indexOf(auth.currentUser?.uid.toString())}")
-//        }
         var userTemp = UserModel()
+        viewModel.getCurrentUser()
         viewModel.user().observe(this){
             userTemp = UserModel(
                 it.uid,it.fullName,it.bio,it.photoURL,it.following,it.followers
             )
-            Log.d("@@USer", "${user}")
+            Log.d("@@USer me", "${userTemp}")
+            for(followers in userTemp.following!!){
+                if(followers == user.uid){
 
+                    iFollow = true
+                    Log.d("@@Followers","${followers} ${iFollow}")
+                    break
+                }
+                Log.d("@@Followersout",followers)
+            }
+
+            binding.btnFollow.text = "Wait"
+            if( iFollow ){
+                binding.btnFollow.text = "Followed"
+                Log.d("@@btnFollowed", "I am here")
+            }else{
+                binding.btnFollow.text = "Follow"
+                Log.d("@@btnFollow", "I am here")
+            }
         }
+
+
         binding.tvFollowers.text = user.followers?.size.toString()
         binding.tvFollowing.text = user.following?.size.toString()
 
@@ -96,6 +99,7 @@ class UsersProfile :  AppCompatActivity()  {
                 startActivity(Intent(this, HomeActivity::class.java))
             }
             else{
+
                     userTemp.following?.add(user.uid!!)
                     user.followers?.add(userTemp.uid!!)
                 viewModel.saveUser(userTemp)

@@ -13,12 +13,19 @@ import com.example.connect.glide.GlideApp
 import com.example.connect.model.ChatChannelModel
 import com.example.connect.model.ChatModel
 import com.example.connect.model.UserModel
+import com.example.connect.retrofit.NotificationModel
+import com.example.connect.retrofit.PushNotification
+import com.example.connect.retrofit.RetrofitInstance
 import com.example.connect.viewModel.ChatViewModel
+import com.example.connect.viewModel.FireBaseViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,26 +35,32 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+const val TOPIC = "/topics/myTopic"
 
 class ChatActivity : AppCompatActivity() {
     lateinit var binding : ActivityChatBinding
     var user = UserModel()
     lateinit var viewModel : ChatViewModel
+    lateinit var viewModelUser : FireBaseViewModel
     lateinit var auth : FirebaseAuth
     lateinit var recyclerView: RecyclerView
     lateinit var adapter : ChatItemAdapter
     var chat = ChatModel()
     var listOfChat = ArrayList<ChatModel>()
+    private var currentUser = UserModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         binding = ActivityChatBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[ChatViewModel::class.java]
-
+        viewModelUser = ViewModelProvider(this)[FireBaseViewModel::class.java]
         auth = FirebaseAuth.getInstance()
         recyclerView = binding.chatRecycleView
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-
+        viewModelUser.user().observe(this, androidx.lifecycle.Observer {
+            currentUser = it
+        })
         val view = binding.root
         setContentView(view)
         val bundle: Bundle? = intent.extras
@@ -73,6 +86,12 @@ class ChatActivity : AppCompatActivity() {
             val channel = ChatChannelModel(auth.currentUser?.uid,user.uid)
             chat = ChatModel(message,auth.currentUser?.uid,user.uid,currentDate, System.currentTimeMillis())
             viewModel.createChannel(channel, chat)
+            val title = "Message from ${currentUser.fullName}"
+            val body = "Click to open application"
+            PushNotification(NotificationModel(title,body) , TOPIC)
+                .also {
+                    sendNotification(it)
+                }
         }
 
         adapter = ChatItemAdapter(listOfChat)
@@ -122,5 +141,19 @@ class ChatActivity : AppCompatActivity() {
            Log.d("@@RefreshChat", e.message!!)
        }
     }
+
+    private fun sendNotification(notification : PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try{
+            val response = RetrofitInstance.api.postNotification(notification)
+            if(response.isSuccessful){
+                Log.d("@@Notification","${Gson().toJson(response)}")
+            }else{
+                Log.d("@@Notification",response.errorBody().toString())
+            }
+        }catch (e : Exception){
+            Log.d("@@Notification",e.message.toString())
+        }
+    }
+
 
 }
