@@ -5,39 +5,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SignInFragment">
+        tools:context=".LogInFragment">
 
         <ImageView
-            android:contentDescription="@string/sign_in_vector"
-            android:id="@+id/vector_sign_in"
+            android:contentDescription="@string/log_in_vector"
+            android:id="@+id/vector_log_in"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_sign_in_vector"
+            android:src="@drawable/ic_log_in_vector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutFullName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="32dp"
-            android:hint="@string/full_name"
-            android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vector_sign_in"
-            app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/ic_user_vector">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TextInputEtFullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"
@@ -46,11 +25,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:hint="@string/email"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFullName"
+            app:layout_constraintTop_toBottomOf="@+id/vector_log_in"
             app:endIconMode="clear_text"
             app:startIconDrawable="@drawable/ic_email_vector">
 
@@ -71,55 +50,36 @@
             android:hint="@string/password"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail"
             app:endIconMode="password_toggle"
-            app:startIconDrawable="@drawable/ic_password_vector">
+            app:startIconDrawable="@drawable/ic_user_vector">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TextInputEtPassword"
+                android:id="@+id/TextInputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutConfirmPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/confirm_password"
-            android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
-            app:endIconMode="password_toggle"
-            app:startIconDrawable="@drawable/ic_password_vector">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TextInputConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_signIn"
+            android:id="@+id/bt_LogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
             android:paddingBottom="16dp"
             android:paddingTop="16dp"
             app:cornerRadius="8dp"
-            android:text="@string/sign_in"
+            android:text="@string/log_in"
             android:backgroundTint="@color/dark_green"/>
 
         <TextView
-            android:id="@+id/tvSignInGoogle"
+            android:id="@+id/tvLogInGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/bt_signIn"
+            app:layout_constraintTop_toBottomOf="@id/bt_LogIn"
             android:text="@string/you_can_connect_with"
             android:gravity="center_horizontal"
             android:textColor="@color/grey"
@@ -128,19 +88,20 @@
             android:layout_marginTop="8dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_login_google"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:icon="@drawable/ic_google_vector"
-            app:backgroundTint="@color/dark_green"
-            app:layout_constraintTop_toBottomOf="@id/tvSignInGoogle"
-            android:text="@string/sign_in_with_google"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            app:iconGravity="textStart"/>
-
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/log_in_with_google"
+            app:backgroundTint="@color/dark_green"
+            app:icon="@drawable/ic_google_vector"
+            app:iconGravity="textStart"
+            app:layout_constraintTop_toBottomOf="@id/tvLogInGoogle"
+            tools:layout_editor_absoluteX="32dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.connect.activities.MainActivity
 
 class Splash: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +15,6 @@ class Splash: AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 2000)
+        }, 500)
     }
 }

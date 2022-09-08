@@ -16,4 +16,6 @@
     <string name="full_name">Full name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_in_with_google">Sign in with google</string>
+    <string name="bio">Bio</string>
+    <string name="webclient_id">334891263173-vjui4vrmnd286d1qq27ab8e3ki62m45i.apps.googleusercontent.com</string>
 </resources>

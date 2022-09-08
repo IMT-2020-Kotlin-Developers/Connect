@@ -3,28 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/introScreenFragment">
-
+    app:startDestination="@id/feedFragment">
     <fragment
-        android:id="@+id/introScreenFragment"
-        android:name="com.example.connect.IntroScreenFragment"
-        android:label="fragment_intro_screen"
-        tools:layout="@layout/fragment_intro_screen" >
-        <action
-            android:id="@+id/action_introScreenFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_introScreenFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
-    </fragment>
+        android:id="@+id/feedFragment"
+        android:name="com.example.connect.fragments.FeedFragment"
+        android:label="FeedFragment"
+        tools:layout="@layout/fragment_feed"/>
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.example.connect.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
-    <fragment
-        android:id="@+id/logInFragment"
-        android:name="com.example.connect.LogInFragment"
-        android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" />
+        android:id="@+id/profileFragment"
+        android:name="com.example.connect.fragments.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
 </navigation>
