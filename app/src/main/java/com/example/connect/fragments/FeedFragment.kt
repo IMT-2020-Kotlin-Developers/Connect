@@ -80,7 +80,7 @@ class FeedFragment : Fragment() {
                 val searchText = p0!!.lowercase(Locale.getDefault())
                 if (searchText.isNotEmpty()) {
                     userList.forEach {
-                        if (it.fullName?.lowercase(Locale.getDefault())?.contains(searchText)!!) {
+                        if (it.fullName?.lowercase(Locale.getDefault())?.contains(searchText)!! && it.uid != auth.uid) {
 
                             tempArrayList.add(it)
                         }
@@ -139,7 +139,7 @@ class FeedFragment : Fragment() {
         Log.d("@@Check For Feed ",itemList.toString())
 //        adapterProfile.notifyItemInserted(itemList.size - 1)
 //        adapterProfile.updateAdapter(itemList)
-        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (!binding.svSearch.isIconified) {
                     binding.svSearch.isIconified = true

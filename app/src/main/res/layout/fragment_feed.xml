@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent">
 
-        <SearchView
-            android:id="@+id/sv_Search"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_marginStart="10dp"
+            android:id="@+id/tvFeed"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layoutDirection="rtl"
+            android:text="Feed"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/sv_Search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <SearchView
+            android:layout_marginStart="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/sv_Search"
+            android:maxWidth="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:searchIcon="@drawable/ic_search_vector"
             app:layout_constraintTop_toTopOf="parent" />
             <androidx.recyclerview.widget.RecyclerView
@@ -25,7 +36,6 @@
                 android:id="@+id/post_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_green"
                 app:layout_constraintTop_toBottomOf="@id/feed_RecycleView"
                 />
 

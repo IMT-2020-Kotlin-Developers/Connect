@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="18dp"
-    >
+    android:paddingBottom="18dp">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
@@ -16,19 +15,19 @@
         app:cardCornerRadius="8dp">
 
         <LinearLayout
+            android:background="#EBEBEB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="8sp"
-            android:paddingBottom="4dp">
+            android:paddingTop="8sp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/iv_itemProfilePic"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/circle"/>
                 <TextView
@@ -37,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:text="Name"
                     android:layout_marginEnd="5dp"
-                    android:textSize="20dp"
+                    android:textSize="14dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
@@ -45,15 +44,15 @@
                 android:id="@+id/item_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="18sp"
                 android:gravity="center"
-                android:paddingBottom="18dp"/>
+                android:text="Description"
+                android:textSize="14dp"
+                android:paddingStart="8dp"
+                android:paddingBottom="12dp"/>
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/item_iv"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginHorizontal="10dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 app:shapeAppearanceOverlay="@style/roundedImageView"

@@ -92,6 +92,7 @@ class ChatActivity : AppCompatActivity() {
                 .also {
                     sendNotification(it)
                 }
+            binding.TextInputEtChat.setText("")
         }
 
         adapter = ChatItemAdapter(listOfChat)

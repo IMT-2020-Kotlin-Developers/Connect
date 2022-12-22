@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="5dp"
-
-   >
+    android:layout_marginVertical="5dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
         >
         <LinearLayout
+            android:background="#EBEBEB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/search_item"
             android:orientation="horizontal">
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/iv_itemProfilePic"

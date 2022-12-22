@@ -20,13 +20,13 @@ class ChatItemAdapter(private var chat : ArrayList<ChatModel>) : RecyclerView.Ad
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
-        val date : TextView
+//        val date : TextView
         val message : TextView
         val layoutP : FrameLayout
         val layout : ConstraintLayout
         init {
             this.message = view.findViewById(R.id.message)
-            this.date = view.findViewById(R.id.tv_Date)
+//            this.date = view.findViewById(R.id.tv_Date)
             this.layoutP = view.findViewById(R.id.parent_layout)
             this.layout = view.findViewById(R.id.layout)
         }
@@ -66,7 +66,7 @@ class ChatItemAdapter(private var chat : ArrayList<ChatModel>) : RecyclerView.Ad
             }
         }
         holder.message.text = currentChat.chat
-        holder.date.text = currentChat.date
+//        holder.date.text = currentChat.date
     }
     fun updateAdapter(mChat: ArrayList<ChatModel>) {
         this.chat = mChat
